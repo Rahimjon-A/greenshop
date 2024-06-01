@@ -13,9 +13,9 @@ const Card = ({ item }) => {
                 />
 
                 <div className=" translate-y-[50px] group-hover:translate-y-0 duration-300 transition-all flex gap-4 absolute z-10 bottom-1 left-[27%]  ">
-                    <p className="text-[32px] cursor-pointer  bg-[#FBFBFB]  rounded-md p-1 " > <PiShoppingCartSimpleBold className={` text-[--second] hover:text-[--primary] duration-300 `}></PiShoppingCartSimpleBold> </p>
-                    <p className="text-[32px] cursor-pointer  bg-[#FBFBFB]  rounded-md p-1 " > <IoSearch className={` text-[--second] hover:text-[--primary] duration-300 `}></IoSearch></p>
-                    <p className="text-[32px] cursor-pointer  bg-[#FBFBFB]  rounded-md p-1 " ><FaRegHeart className={` text-[--second] hover:text-[--primary] duration-300 `}></FaRegHeart></p>
+                    <p className="text-[32px] cursor-pointer  bg-[--bg-cart]  rounded-md p-1 " > <PiShoppingCartSimpleBold className={` text-[--second] hover:text-[--primary] duration-300 `}></PiShoppingCartSimpleBold> </p>
+                    <p className="text-[32px] cursor-pointer  bg-[--bg-cart]  rounded-md p-1 " > <IoSearch className={` text-[--second] hover:text-[--primary] duration-300 `}></IoSearch></p>
+                    <p className="text-[32px] cursor-pointer  bg-[--bg-cart]  rounded-md p-1 " ><FaRegHeart className={` text-[--second] hover:text-[--primary] duration-300 `}></FaRegHeart></p>
                 </div>
                 
             </div>

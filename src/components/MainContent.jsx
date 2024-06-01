@@ -1,9 +1,9 @@
+
 import React, { useState } from "react";
 import { data } from "../data/data";
 import Card from "./Card";
 import { Pagination, Stack } from "@mui/material";
-
-
+import PaginationRounded from "../ui/Pagination";
 
 const MainContent = () => {
     const [sort, setSort] = useState(0);
@@ -20,7 +20,7 @@ const MainContent = () => {
     };
 
     return (
-        <div>
+        <div className=" h-full flex flex-col justify-between " >
             <div className="flex justify-between items-center mb-[31px] ">
                 <ul className="flex gap-[37px] ">
                     <li
@@ -64,21 +64,23 @@ const MainContent = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-[33px] ">
+            <div className="grid grid-cols-3 h-full gap-[33px] ">
                 {currentItems.map((item) => (
                     <Card key={item.id} item={item} />
                 ))}
             </div>
-            <div className="flex justify-end">
-                <Stack spacing={2}>
-                    <Pagination
-                        count={Math.ceil(items.length / itemsPerPage)}
-                        page={page}
-                        onChange={handleChangePage}
-                        variant="outlined"
-                        shape="rounded"
-                    />
-                </Stack>
+
+            <div className="flex mt-[30px] justify-end">
+            <Stack spacing={2}>
+          <Pagination
+            count={Math.ceil(items.length / itemsPerPage)}
+            page={page}
+            onChange={handleChangePage}
+            variant="outlined"
+            shape="rounded"
+
+          />
+        </Stack>
             </div>
         </div>
     );

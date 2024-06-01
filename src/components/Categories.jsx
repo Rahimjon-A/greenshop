@@ -1,4 +1,4 @@
-
+import Discout from "../assets/images/discount.svg"
 import RangeSlider from "../ui/Range"
 
 const Categories = () => {
@@ -103,7 +103,9 @@ const Categories = () => {
         </div>
 
         <div className="discount w-full  max-h-[470px] h-full" >
+            <img src={Discout} alt="" />
         </div>
+
        </div>
     );
 };
