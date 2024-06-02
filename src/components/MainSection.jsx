@@ -5,6 +5,7 @@ import SimpleCart from '../ui/SimpleCart'
 import Image14 from "../assets/images/image14.svg"
 import Image15 from "../assets/images/image15.svg"
 import Blogs from './Blogs'
+import Contact from './Contact'
 
 const MainSection = () => {
   return (
@@ -18,6 +19,7 @@ const MainSection = () => {
         <SimpleCart image={Image15} title={`Styling trends   &  much  more`} />
         </div>
         <Blogs/>
+        <Contact/>
     </>
   )
 }

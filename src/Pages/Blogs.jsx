@@ -1,8 +1,11 @@
-import React from 'react'
+import Contact from '../components/Contact'
 
 const Blogs = () => {
   return (
-    <div>Blogs</div>
+    <div className={`min-h-[100vh] flex flex-col  justify-between  `} >
+      <div>Blogs</div>
+    <Contact/>
+    </div>
   )
 }
 

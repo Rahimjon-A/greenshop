@@ -1,8 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import CartReducer from "../reducers/cart";
+import cartReducer, { setItems } from "../reducers/cart";
+import { data } from "../data/data";
 
-export const store = configureStore({
+const store = configureStore({
     reducer: {
-        cart: CartReducer,
+        cart: cartReducer,
     },
 });
+
+// Initialize items
+store.dispatch(setItems(data));
+
+export default store;
+

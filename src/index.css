@@ -13,10 +13,16 @@
 
 :root {
     --primary: #46a358;
+    --primary-low: #46a35975;
+    --bg-low: rgba(70, 163, 88, 0.1);
     --second: #3d3d3d;
     --bg: #FBFBFB;
     --text:#727272;
     --bg-cart: rgba(251, 251, 251, 0.5);
+}
+
+::-webkit-scrollbar {
+    width: 0px;
 }
 
 
