@@ -107,6 +107,7 @@ const Navbar = () => {
                             </span>
                         </SignInButton>
                     </SignedOut>
+                    
                     <SignedIn>
                         <Link
                             to={'/user'}

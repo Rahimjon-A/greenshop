@@ -18,9 +18,9 @@ const Search = () => {
     const { modal, items, wishlist, carts, warning } = useSelector((state) => state.cart);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [search, setSearch] = useState(data);
-    const [val, setVal] = useState("");
     const [show, setShow] = useState(false);
+    const [val, setVal] = useState("");
+    const [search, setSearch] = useState(data);
 
     const searchBranch = () => {
         if (val.trim() === "") {

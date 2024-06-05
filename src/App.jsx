@@ -14,11 +14,15 @@ import { clearWarning, handleActive } from "./reducers/cart";
 import UserModal from "./components/UserModal";
 import MobileNavbar from "./components/MobileNavbar";
 import MobileHeader from "./components/MobileHeader";
+import MobileCotegories from "./components/MobileCotegories";
+import ScrollTop from "./components/UpToTop";
 
 const App = () => {
     const navigate = useNavigate();
     const { warning } = useSelector((state) => state.cart);
     const dispatch = useDispatch();
+
+
 
     useEffect(() => {
         if (warning) {
@@ -47,6 +51,7 @@ const App = () => {
 
     const [errors, setErrors] = useState({});
     const [order, setOrder] = useState(false);
+    const [ modal, setModal] = useState(false)
     const handleInputChange = (e) => {
         const { id, value } = e.target;
         setFormData({ ...formData, [id]: value });
@@ -94,9 +99,10 @@ const App = () => {
                     </Link>
                 </div>
             )}
-
+            <ScrollTop/>
             <Navbar />
-            <MobileNavbar/>
+            <MobileNavbar setModal={setModal} />
+            <MobileCotegories setModal={setModal} modal={modal} />
             <Search />
             <UserModal />
             <div className="container px-4 mx-auto">

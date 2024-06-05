@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaRegHeart, FaRegUser } from "react-icons/fa6";
-import { FiAlertTriangle, FiDownload, FiLogOut, FiTrash } from "react-icons/fi";
+import { FiAlertTriangle, FiDownload, FiLogIn, FiLogOut, FiTrash } from "react-icons/fi";
 import { GrLocation } from "react-icons/gr";
 import { LuShoppingCart } from "react-icons/lu";
 import { TbGraph } from "react-icons/tb";
@@ -9,7 +9,7 @@ import { CiImageOn } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, handleRemove, increment } from "../reducers/cart";
 import Card from "../components/Card";
-import { SignedIn, UserButton } from "@clerk/clerk-react";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 
 const User = ({ formData, handleInputChange, handleSubmit, errors, order }) => {
     const [user, setUser] = useState(0);
@@ -108,6 +108,7 @@ const User = ({ formData, handleInputChange, handleSubmit, errors, order }) => {
                             <span>Loguot</span>
                         </span>
                     </SignedIn>
+
                 </div>
             </div>
 

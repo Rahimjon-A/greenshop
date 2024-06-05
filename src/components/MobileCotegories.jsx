@@ -1,11 +1,31 @@
-import Discout from "../assets/images/discount.svg"
-import RangeSlider from "../ui/Range"
+import  { useEffect, useState } from "react";
 
-const Categories = () => {
+const MobileCotegories = ({modal, setModal}) => {
+
+    const [show, setShow] = useState(false);
+
+    useEffect(() => {
+        if (modal) {
+            setShow(true);
+        } else {
+            setTimeout(() => setShow(false), 500);
+        }
+    }, [modal]);
+
     return (
-       <div >
-         <div className=" hidden md:block bg-[--bg] pl-[18px] pb-[18px] pt-[14px] pr-[24px] ">
-         <div className="mb-[30px] p-4 ">
+        <div
+            className={` ${
+                modal ? "flex" : "hidden"
+            } bg-[#000000b3] fixed z-40 top-0 left-0 w-full h-full duration-300 justify-center items-start`}
+        >
+            <div
+                className={`bg-white ${
+                    show ? "translate-y-0" : "translate-y-[-100vh] "
+                } transition-all duration-500 relative w-full lg:w-[900px] mx-4 flex mt-[7%] rounded-md flex-col `}
+            >
+
+            <button onClick={()=> setModal(false)} className=" absolute rotate-45 text-[45px]  top-0 right-4 " >+</button>
+            <div className="mb-[30px] p-4 ">
                 <p className=" text-[20px] font-bold mb-[20px] ">Categories</p>
                 <ul className="pl-[12px] flex flex-col gap-[20px] tex-[--second] ">
                     <li
@@ -64,48 +84,9 @@ const Categories = () => {
                     </li>
                 </ul>
             </div>
-
-
-            <div>
-                    <p className=" text-[20px] justify-start items-start font-bold mb-[20px] ">
-                        Price Range
-                    </p>
-                    <RangeSlider/>
-            </div>
-
-            <div >
-                <p className=" text-[20px] font-bold mb-[20px] ">Categories</p>
-                <ul className="pl-[12px] flex flex-col gap-[20px] tex-[--second] ">
-                    <li
-                        className={`flex cursor-pointer justify-between text-[18px] items-center`}
-                    >
-                        <span>Small</span>
-                        <span>(33)</span>
-                    </li>
-                    <li
-                        className={`flex cursor-pointer justify-between text-[18px] items-center`}
-                    >
-                        <span>Medium</span>
-                        <span>(12)</span>
-                    </li>
-                    <li
-                        className={`flex cursor-pointer justify-between text-[18px] items-center`}
-                    >
-                        <span>Large</span>
-                        <span>(33)</span>
-                    </li>
-                </ul>
             </div>
         </div>
-
-        <div className=" hidden md:block discount w-full  max-h-[470px] h-full" >
-            <img src={Discout} alt="" />
-        </div>
-
-       </div>
     );
 };
 
-export default Categories;
-
-
+export default MobileCotegories;

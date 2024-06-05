@@ -37,14 +37,14 @@ const Shopping = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-[20px] lg:gap-[86px] mb-[87px] ">
                 <div>
-                    <div className="grid grid-cols-[2fr_1fr_1fr_1fr] border-b border-[--primary] pb-3 ">
+                    <div className="grid grid-cols-[1fr_1fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr_1fr] border-b border-[--primary] pb-3 ">
                         <p className=" text-[--second] text-[18px] font-medium  ">
                             Products
                         </p>
                         <p className=" text-[--second] text-[18px] font-medium  ">
                             Price
                         </p>
-                        <p className=" text-[--second] pl-[15px] text-[18px] font-medium  ">
+                        <p className=" text-[--second]  sm:pl-[15px] text-[18px] font-medium  ">
                             Quantity
                         </p>
                         <p className=" text-[--second] text-[18px] font-medium  ">
@@ -60,18 +60,19 @@ const Shopping = () => {
 
                             
                             return (
-                                <div key={item.id} className="grid grid-cols-[2fr_1fr_1fr_1fr] mt-[12px] bg-[--bg] items-center ">
-                                    <div className="flex gap-4 items-center">
+                                <div key={item.id} className="grid grid-cols-[1fr_1fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr_1fr] mt-[12px] bg-[--bg] items-center ">
+                                   
+                                    <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
                                         <img
                                             src={item.image_url}
                                             alt=""
                                             className="w-[80px] h-[80px] "
                                         />
                                         <span>
-                                            <span className=" block text-[18px] capitalize font-medium mb-[6px] ">
+                                            <span className=" block text-[12px] sm:text-[18px] capitalize font-medium mb-[6px] ">
                                                 {item.common_name}
                                             </span>
-                                            <span className=" text-[#A5A5A5] ">
+                                            <span className=" text-[12px] sm:text-[18px] text-[#A5A5A5] ">
                                                 SKU:
                                                 <span className=" text-[--text] ">
                                                     {item.id}
@@ -87,19 +88,19 @@ const Shopping = () => {
 
                                     <div>
                                         <span className="flex gap-[14px] items-center">
-                                            <span onClick={()=> dispatch(decrement(item.id))} className="text-white cursor-pointer hover:opacity-70 bg-[--primary] px-[14px] text-[18px] py-[6px] rounded-full font-bold">
+                                            <span onClick={()=> dispatch(decrement(item.id))} className="text-white cursor-pointer hover:opacity-70 bg-[--primary] px-[10px] py-[3px] text-[16px] sm:px-[14px] sm:text-[18px] sm:py-[6px] rounded-full font-bold">
                                                 -
                                             </span>
                                             <span className="text-[20px]">
                                                 {item.amount}
                                             </span>
-                                            <span onClick={()=> dispatch(increment(item.id))} className="text-white cursor-pointer hover:opacity-70 bg-[--primary] px-[13px] text-[18px] py-[6px] rounded-full font-bold">
+                                            <span onClick={()=> dispatch(increment(item.id))} className="text-white cursor-pointer hover:opacity-70 bg-[--primary] px-[10px] py-[3px] text-[16px] sm:px-[14px] sm:text-[18px] sm:py-[6px] rounded-full font-bold">
                                                 +
                                             </span>
                                         </span>
                                     </div>
 
-                                    <div className="flex items-center justify-between pr-[26px] ">
+                                    <div className="flex items-center justify-between pr-[10px] sm:pr-[26px] ">
                                         <p className=" text-[18px] font-bold text-[--primary] ">
                                             ${itemTotal}
                                         </p>
