@@ -7,8 +7,7 @@ const store = configureStore({
         cart: cartReducer,
     },
 });
-
-// Initialize items
+  
 store.dispatch(setItems(data));
 
 export default store;

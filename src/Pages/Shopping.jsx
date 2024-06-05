@@ -5,7 +5,7 @@ import { decrement, handleActive, handlePrice, handleRemove, increment } from ".
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FiTrash } from "react-icons/fi";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Shopping = () => {
     const dispatch = useDispatch();
@@ -13,6 +13,8 @@ const Shopping = () => {
     useEffect(()=>{
             dispatch(handlePrice())
     }, [carts] )
+
+    const [ warn, setWarn ] = useState(false)
     return (
         <div className="min-h-[100vh] flex flex-col justify-between">
             <div className="mb-[43px] mt-[36px] tracking-widest">
@@ -33,7 +35,7 @@ const Shopping = () => {
                 <Link>Shopping Cart</Link>
             </div>
 
-            <div className="grid grid-cols-[3fr_1fr] gap-[86px] mb-[87px] ">
+            <div className="grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-[20px] lg:gap-[86px] mb-[87px] ">
                 <div>
                     <div className="grid grid-cols-[2fr_1fr_1fr_1fr] border-b border-[--primary] pb-3 ">
                         <p className=" text-[--second] text-[18px] font-medium  ">
@@ -56,6 +58,7 @@ const Shopping = () => {
                                 item.amount * item.price
                             ).toFixed(2);
 
+                            
                             return (
                                 <div key={item.id} className="grid grid-cols-[2fr_1fr_1fr_1fr] mt-[12px] bg-[--bg] items-center ">
                                     <div className="flex gap-4 items-center">
@@ -84,7 +87,7 @@ const Shopping = () => {
 
                                     <div>
                                         <span className="flex gap-[14px] items-center">
-                                            <span onClickCapture={()=> dispatch(decrement())}  onClick={()=> dispatch(decrement(item.id))} className="text-white cursor-pointer hover:opacity-70 bg-[--primary] px-[14px] text-[18px] py-[6px] rounded-full font-bold">
+                                            <span onClick={()=> dispatch(decrement(item.id))} className="text-white cursor-pointer hover:opacity-70 bg-[--primary] px-[14px] text-[18px] py-[6px] rounded-full font-bold">
                                                 -
                                             </span>
                                             <span className="text-[20px]">
@@ -108,6 +111,7 @@ const Shopping = () => {
                             );
                         })}
                     </div>
+                    
                 </div>
 
                 <div>
@@ -151,10 +155,10 @@ const Shopping = () => {
                         </div>
                         <div className="flex justify-between w-full items-center relative">
                             <span className="text-[18px] text-[--second] ">
-                                Shiping
+                                Shipping
                             </span>
                             <span className="text-[--second] font-medium text-[20px] ">
-                                $16.00
+                                { totalPrice ? "$16.00" : "$0.00" }
                             </span>
                             <span className=" absolute bottom-[-24px] right-0 text-[14px] text-[--primary] ">
                                 View shipping charge
@@ -164,22 +168,24 @@ const Shopping = () => {
 
                     <div className="flex justify-between mb-[30px] w-full items-center">
                         <span className="text-[20px] text-[--second] font-bold ">
-                            Subtotal
+                            Total
                         </span>
                         <span className="text-[--primary] font-bold text-[22px]  ">
-                            ${totalPrice}.00
+                            ${totalPrice ?  totalPrice + 16 : totalPrice}.00
                         </span>
                     </div>
 
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col relative gap-3">
                         <button className="text-white bg-[--primary] rounded-md py-3 hover:opacity-70 ">
-                            Proceed To Checkout
+                            { carts.length > 0 ? <Link to={"/shop/checkout"} > Proceed To Checkout </Link> : <span onClick={()=> setWarn(true)} >Proceed To Checkout</span> }
                         </button>
-                        <button className=" py-3 bg-inherit text-[--primary] rounded-md hover:bg-[--bg-low] duration-300 ">
-                            Continue Shopping
+                        <button onClick={()=> dispatch(handleActive(0))}  className=" py-3 bg-inherit text-[--primary] rounded-md hover:bg-[--bg-low] duration-300 ">
+                           <Link to={'/'} > Continue Shopping </Link>
                         </button>
+                        <span className={`text-red-500 text-[14xp] absolute top-[-25px] left-1/2] translate-x-1/2 ${warn ? "block" : "hidden"} `} >There is nothing to buy </span>
                     </div>
                 </div>
+
             </div>
 
             <p className="text-[--primary] text-[20px] font-bold border-b border-[--primary] pb-[12px]">

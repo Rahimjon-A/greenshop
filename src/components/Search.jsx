@@ -10,11 +10,12 @@ import {
     handleActive,
     handleLiked,
     setCarts,
+    setWishlist,
 } from "../reducers/cart";
 import { useNavigate } from "react-router-dom";
 
 const Search = () => {
-    const { modal, items, carts, warning } = useSelector((state) => state.cart);
+    const { modal, items, wishlist, carts, warning } = useSelector((state) => state.cart);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [search, setSearch] = useState(data);
@@ -55,8 +56,8 @@ const Search = () => {
         }
     }, [warning, dispatch]);
 
-    const handleLikeClick = (itemId) => {
-        dispatch(handleLiked(itemId));
+    const handleLikeClick = (item) => {
+        dispatch(setWishlist(item));
     };
 
     const handleCartClick = (item) => {
@@ -71,10 +72,10 @@ const Search = () => {
         >
             <div
                 className={`bg-white ${
-                    show ? "translate-y-0" : "translate-y-[100vh] "
-                } transition-all duration-500 content flex mt-[2%] rounded-md flex-col `}
+                    show ? "translate-y-0" : "translate-y-[-100vh] "
+                } transition-all duration-500  w-full lg:w-[900px] mx-4 flex mt-[2%] rounded-md flex-col `}
             >
-                <div className="flex  gap-3 lg:w-[900px]  border-b rounded-md overflow-hidden px-4 items-center  ">
+                <div className="flex  gap-3  border-b rounded-md overflow-hidden px-4 items-center  ">
                     <label htmlFor="search">
                         <FaSearch className="text-[--primary] text-[22px] "></FaSearch>{" "}
                     </label>
@@ -94,10 +95,10 @@ const Search = () => {
 
                 <div className="max-h-[500px] h-full overflow-scroll px-4 py-4 bg-[--bg-low] ">
                     {search.map((item) => {
-                        const isLiked =
-                            items.find((i) => i.id === item.id)?.isLiked ||
-                            false;
                         const isInCart = carts.some(
+                            (cartItem) => cartItem.id === item.id
+                        );
+                        const isLiked = wishlist.some(
                             (cartItem) => cartItem.id === item.id
                         );
 
@@ -150,7 +151,7 @@ const Search = () => {
                                         </p>
                                         <p
                                             onClick={() =>
-                                                handleLikeClick(item.id)
+                                                handleLikeClick(item)
                                             }
                                             className={`text-[32px] cursor-pointer ${
                                                 isLiked

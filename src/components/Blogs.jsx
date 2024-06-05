@@ -6,7 +6,7 @@ import BlogCart from "../ui/BlogCart";
 
 const Blogs = () => {
     return (
-        <div className="mb-[100px] " >
+        <div className=" mb-[30px] md:mb-[100px] " >
             <div className="mb-[35px] ">
                 <h1 className=" text-center text-[--second] text-[35px] font-bold mb-[15px] ">
                     Our Blog Posts
@@ -16,7 +16,7 @@ const Blogs = () => {
                     and trendy plants.{" "}
                 </p>
             </div>
-            <div className="grid grid-cols-4 gap-[44px] ">
+            <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-4 gap-[44px] ">
                 <BlogCart
                     image={image1}
                     title={" Cactus & Succulent Care Tips"}

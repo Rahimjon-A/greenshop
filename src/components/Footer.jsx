@@ -10,7 +10,7 @@ import {
 const Footer = () => {
     return (
         <>
-            <div className="grid grid-cols-4 bg-[--bg] pt-[33px] pl-[23px] pb-[30px] border-b-[2px] ">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-[--bg] pt-[33px] pl-[23px] pb-[30px] border-b-[2px] ">
                 <div>
                     <p className="text-[20px] font-bold mb-[20px] ">
                         My Account

@@ -17,13 +17,31 @@ const MainContent = () => {
             sortedItems.sort((a, b) =>
                 a.common_name.localeCompare(b.common_name)
             );
-        } else if (sortType === "price" || sort == 2) {
+        } else if (sortType === "price") {
             sortedItems.sort((a, b) => a.price - b.price);
         } else if (sortType === "default" || sort == 0) {
             sortedItems = [...data];
-        }
+        } else if (sort === 2) {
+            sortedItems = sortedItems.filter((item) => item.discount);
+        } 
         setItems(sortedItems);
     }, [sortType, sort]);
+
+    useEffect(() => {
+        let sortedItems = [...data];
+
+        if (sort === 1) {
+            sortedItems.sort((a, b) =>
+                a.common_name.localeCompare(b.common_name)
+            );
+        } else if (sort === 2) {
+            sortedItems = sortedItems.filter(item => item.discount);
+        } else {
+            sortedItems = [...data];
+        }
+
+        setItems(sortedItems);
+    }, [sort]);
 
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -40,7 +58,7 @@ const MainContent = () => {
     return (
         <div className="h-full flex flex-col justify-between">
             <div className="flex justify-between items-center mb-[31px]">
-                <ul className="flex gap-[37px]">
+                <ul className="flex gap-[30px] sm:gap-[37px]">
                     <li
                         onClick={() => setSort(0)}
                         className={`text-[16px] border-[--primary] duration-300 transition-all cursor-pointer pb-[6px] ${
@@ -73,7 +91,7 @@ const MainContent = () => {
                     </li>
                 </ul>
 
-                <div className="flex gap-3 items-center">
+                <div className=" hidden sm:flex gap-3 items-center">
                     <span className="text-[18px]">Sort by:</span>
                     <select
                         className="text-[18px] outline-none"
@@ -87,7 +105,7 @@ const MainContent = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-3 h-full gap-[33px]">
+            <div className="grid grid-cols-2 sm:grid-cols-3 h-full gap-[33px]">
                 {currentItems.map((item) => (
                     <Card key={item.id} item={item} />
                 ))}

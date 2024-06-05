@@ -7,6 +7,8 @@ import { CiHeart } from "react-icons/ci";
 import ShopContent from "../ui/ShopContent";
 import ShopSlider from "../components/ShopSlider";
 import Contact from "../components/Contact";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import ReactImageMagnify from "react-image-magnify";
 import {
     FaFacebookF,
     FaInstagram,
@@ -22,14 +24,18 @@ import {
     increment,
     setCarts,
 } from "../reducers/cart";
+import { PiShoppingCartSimpleFill } from "react-icons/pi";
 
 const Cart = () => {
     const { slug } = useParams();
-    const [ size, setSize ] = useState(0)
+    const [size, setSize] = useState(0);
     const shopping = data.find((item) => item.slug === slug);
     const dispatch = useDispatch();
     const { items } = useSelector((state) => state.cart);
-    const isLiked = shopping ? (items.find((i) => i.id === shopping.id)?.isLiked || false) : false;
+    const [amount, setAmount] = useState(0);
+    const isLiked = shopping
+        ? items.find((i) => i.id === shopping.id)?.isLiked || false
+        : false;
 
     return (
         <div className="min-h-[100vh] flex flex-col justify-between">
@@ -44,12 +50,10 @@ const Cart = () => {
                 <Link>Shop</Link>
             </div>
 
-            {/* Dynamic data */}
-
             {shopping ? (
-                <div className="grid grid-cols-2 gap-[53px] mb-[92px]">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-[53px] mb-[92px]">
                     <div className="flex gap-[46px]">
-                        <div className="flex flex-col gap-4">
+                        <div className="md:flex hidden flex-col gap-4">
                             <img
                                 src={shopping.image_url}
                                 className="rounded-md cursor-pointer w-[100px] h-[100px]"
@@ -71,12 +75,20 @@ const Cart = () => {
                                 alt="image"
                             />
                         </div>
-                        <div className="relative">
-                            <img
-                                src={shopping.image_url}
-                                className="rounded-md h-[444px] w-[444px]"
-                                alt="image"
-                            />
+                        <div className="relative cursor-pointer overflow-hidden">
+                            <TransformWrapper
+                                defaultScale={1}
+                                defaultPositionX={100}
+                                defaultPositionY={200}
+                            >
+                                <TransformComponent>
+                                    <img
+                                        src={shopping.image_url}
+                                        className="rounded-md h-[444px] w-[444px]"
+                                        alt="image"
+                                    />
+                                </TransformComponent>
+                            </TransformWrapper>
                             <span className="p-3 rounded-full bg-[--bg-cart] cursor-pointer absolute top-5 right-5">
                                 <FaSearch className="text-[--second] text-[28px] hover:text-[--primary] transition-all"></FaSearch>
                             </span>
@@ -118,23 +130,43 @@ const Cart = () => {
                                 Size:
                             </p>
                             <span className="flex items-center gap-[10px]  ">
-                                <span onClick={()=> setSize(1)}
-                                    className={`  ${ size == 1 ? "border-[--primary] text-[--primary]": null } border-[2px] rounded-full px-3 py-2 w-[38px] grid place-content-center cursor-pointer hover:border-[--primary] duration-300 hover:text-[--primary] h-[38px] text-center `}
+                                <span
+                                    onClick={() => setSize(1)}
+                                    className={`  ${
+                                        size == 1
+                                            ? "border-[--primary] text-[--primary]"
+                                            : null
+                                    } border-[2px] rounded-full px-3 py-2 w-[38px] grid place-content-center cursor-pointer hover:border-[--primary] duration-300 hover:text-[--primary] h-[38px] text-center `}
                                 >
                                     S
                                 </span>
-                                <span onClick={()=> setSize(2)}
-                                    className={` ${ size == 2 ? "border-[--primary] text-[--primary]": null } border-[2px] rounded-full px-3 py-2 w-[38px] grid place-content-center cursor-pointer hover:border-[--primary] duration-300 hover:text-[--primary] h-[38px] text-center `}
+                                <span
+                                    onClick={() => setSize(2)}
+                                    className={` ${
+                                        size == 2
+                                            ? "border-[--primary] text-[--primary]"
+                                            : null
+                                    } border-[2px] rounded-full px-3 py-2 w-[38px] grid place-content-center cursor-pointer hover:border-[--primary] duration-300 hover:text-[--primary] h-[38px] text-center `}
                                 >
                                     M
                                 </span>
-                                <span onClick={()=> setSize(3)}
-                                    className={` ${ size == 3 ? "border-[--primary] text-[--primary]": null } border-[2px] rounded-full px-3 py-2 w-[38px] grid place-content-center cursor-pointer hover:border-[--primary] duration-300 hover:text-[--primary] h-[38px] text-center `}
+                                <span
+                                    onClick={() => setSize(3)}
+                                    className={` ${
+                                        size == 3
+                                            ? "border-[--primary] text-[--primary]"
+                                            : null
+                                    } border-[2px] rounded-full px-3 py-2 w-[38px] grid place-content-center cursor-pointer hover:border-[--primary] duration-300 hover:text-[--primary] h-[38px] text-center `}
                                 >
                                     L
                                 </span>
-                                <span onClick={()=> setSize(4)}
-                                    className={` ${ size == 4 ? "border-[--primary] text-[--primary]": null } border-[2px] rounded-full px-3 py-2 w-[38px] grid place-content-center cursor-pointer hover:border-[--primary] duration-300 hover:text-[--primary] h-[38px] text-center `}
+                                <span
+                                    onClick={() => setSize(4)}
+                                    className={` ${
+                                        size == 4
+                                            ? "border-[--primary] text-[--primary]"
+                                            : null
+                                    } border-[2px] rounded-full px-3 py-2 w-[38px] grid place-content-center cursor-pointer hover:border-[--primary] duration-300 hover:text-[--primary] h-[38px] text-center `}
                                 >
                                     XL
                                 </span>
@@ -144,37 +176,48 @@ const Cart = () => {
                         <div className="flex items-center mb-[23px] gap-[23px]">
                             <span className="flex gap-[23px] items-center">
                                 <span
-                                    onClick={() =>
-                                        dispatch(decrement(shopping.id))
-                                    }
+                                    onClick={() => {
+                                        dispatch(decrement(shopping.id));
+                                        setAmount(
+                                            amount > 1 ? amount - 1 : amount
+                                        );
+                                    }}
                                     className="text-white cursor-pointer hover:opacity-70 bg-[--primary] px-[15px] text-[20px] py-[7px] rounded-full font-bold"
                                 >
                                     -
                                 </span>
-                                <span className="text-[20px]">
-                                    {shopping.amount ? shopping.amount : 1}{" "}
-                                </span>
+                                <span className="text-[20px]"> {amount} </span>
                                 <span
-                                    onClick={() =>
-                                        dispatch(increment(shopping.id))
-                                    }
+                                    onClick={() => {
+                                        dispatch(increment(shopping.id));
+                                        dispatch(setCarts(shopping));
+                                        setAmount((prev) => prev + 1);
+                                    }}
                                     className="text-white cursor-pointer hover:opacity-70 bg-[--primary] px-[15px] text-[20px] py-[7px] rounded-full font-bold"
                                 >
                                     +
                                 </span>
                             </span>
 
-                            <span className="text-[18px] font-bold border rounded-md w-[150px] text-center py-[7px] text-white bg-[--primary] cursor-pointer hover:opacity-70">
+                            <span className="text-[18px] break-keep font-bold border rounded-md w-[150px] text-center py-[7px] text-white bg-[--primary] cursor-pointer hover:opacity-70">
                                 <Link to={"/shop/cart"}>BUY NOW</Link>
                             </span>
                             <span
                                 onClick={() => dispatch(setCarts(shopping))}
-                                className="text-[18px] font-bold border rounded-md w-[150px] text-center py-[7px] text-[--primary] border-[--primary] cursor-pointer hover:opacity-70"
+                                className="text-[18px] hidden lg:block font-bold border rounded-md w-[150px] text-center py-[7px] text-[--primary] border-[--primary] cursor-pointer hover:opacity-70"
                             >
                                 ADD TO CART
                             </span>
                             <span
-                                onClick={() => dispatch(handleLiked(shopping.id))}
+                                onClick={() => dispatch(setCarts(shopping))}
+                                className="text-[24px] lg:hidden font-bold border rounded-md w-[150px] flex justify-center py-[7px] text-[--primary] border-[--primary] cursor-pointer hover:opacity-70"
+                            >
+                                <PiShoppingCartSimpleFill />
+                            </span>
+                            <span
+                                onClick={() =>
+                                    dispatch(handleLiked(shopping.id))
+                                }
                                 className={`font-bold border ${
                                     isLiked
                                         ? " bg-[--primary] text-white "
@@ -250,3 +293,19 @@ const Cart = () => {
 };
 
 export default Cart;
+
+{
+    /* <TransformWrapper
+defaultScale={1}
+defaultPositionX={100}
+defaultPositionY={200}
+>
+<TransformComponent>
+    <img
+        src={shopping.image_url}
+        className="rounded-md h-[444px] w-[444px]"
+        alt="image"
+    />
+</TransformComponent>
+</TransformWrapper> */
+}

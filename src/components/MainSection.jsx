@@ -7,14 +7,15 @@ import Image15 from "../assets/images/image15.svg"
 import Blogs from './Blogs'
 import Contact from './Contact'
 
+
 const MainSection = () => {
   return (
     <>
-    <div className=' grid grid-cols-[1fr_3fr] gap-[50px] mb-[96px] ' >
+    <div className=' grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-[50px] mb-[96px] ' >
         <Categories/>
         <MainContent/>
     </div>
-        <div className='flex justify-between items-center gap-[28px] mb-[138px] ' >
+        <div className='flex flex-col lg:flex-row justify-between items-center gap-[28px] mb-[40px] md:mb-[138px] ' >
         <SimpleCart image={Image14} title={`Summer Cactus  & Succulents`} />
         <SimpleCart image={Image15} title={`Styling trends   &  much  more`} />
         </div>

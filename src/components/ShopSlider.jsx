@@ -4,11 +4,11 @@ import Card from "./Card";
 
 const ShopSlider = () => {
     const [slide, setSlide] = useState(0);
-    const slidesToShow = 5;  // Adjust this value based on how many cards you want visible at once.
+    const slidesToShow = 5;  
     const totalSlides = Math.ceil(data.length / slidesToShow);
 
     return (
-        <div className="relative mt-[44px] pb-[50px] w-full overflow-hidden mb-[128px]">
+        <div className="relative mt-[44px] pb-[50px] w-full overflow-hidden mb-[40px] md:mb-[128px]">
             <div
                 style={{ transform: `translateX(-${slide * 100}%)` }}
                 className="flex gap-[40px] transition-transform ease-out duration-500"
@@ -16,7 +16,7 @@ const ShopSlider = () => {
                 {data.map((item) => (
                     <div
                         key={item.common_name}
-                        className="min-w-[265px] flex-shrink-0"
+                        className=" min-w-[175px] md:min-w-[265px] flex-shrink-0"
                         style={{ flex: `0 0 calc(${100 / slidesToShow}% - 40px)` }}
                     >
                         <Card item={item} />

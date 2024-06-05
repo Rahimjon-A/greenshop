@@ -10,9 +10,9 @@ import Footer from "./Footer";
 const Contact = () => {
     return (
         <div>
-            <div className="flex gap-[62px] bg-[--bg] pt-[31px] pr-[25px] pb-[23px] ">
-                <div className="grid grid-cols-3 grow ">
-                    <div className="border-r ml-[27px] pr-[34px] ">
+            <div className="flex flex-wrap lg:flex-nowrap  gap-[62px] bg-[--bg] pt-[31px] pr-[25px] pb-[23px] ">
+                <div className="grid grid-cols-1 md:grid-cols-3  grow ">
+                    <div className="md:border-r ml-[27px] pr-[34px] ">
                         <img src={img1} alt="" className="mb-[17px]" />
                         <div>
                             <p className="font-bold mb-2 text-[18px] text-[--second] ">
@@ -25,7 +25,7 @@ const Contact = () => {
                         </div>
                     </div>
 
-                    <div className="border-r ml-[27px] pr-[34px] ">
+                    <div className="md:border-r ml-[27px] pr-[34px] ">
                         <img src={img2} alt="" className="mb-[17px]" />
                         <div>
                             <p className="font-bold mb-2 text-[18px] text-[--second] ">
@@ -52,7 +52,7 @@ const Contact = () => {
                     </div>
                 </div>
 
-                <div className="max-w-[354px] w-full ">
+                <div className="max-w-[354px] ml-[34px] md:ml-0 w-full ">
                     <p className="text-[20px] font-bold text-[--second] mb-[18px] ">
                         Would you like to join newsletters?
                     </p>
@@ -75,7 +75,7 @@ const Contact = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-5 justify-between items-center gap-[60px] pt-[25px] pl-[25px] pb-[19px] bg-[--bg-low] ">
+            <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-5 justify-between items-center gap-[60px] pt-[25px] pl-[25px] pb-[19px] bg-[--bg-low] ">
 
                 <img src={Logo} alt="" className=" cursor-pointer" />
 
