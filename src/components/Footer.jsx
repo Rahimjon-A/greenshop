@@ -16,16 +16,16 @@ const Footer = () => {
                         My Account
                     </p>
                     <ul>
-                        <li className="font-light text-[18px] mb-3 ">
+                        <li className=" cursor-pointer hover:text-[--primary] font-light text-[18px] mb-3 ">
                             My Account
                         </li>
-                        <li className="font-light text-[18px] mb-3 ">
+                        <li className=" cursor-pointer hover:text-[--primary] font-light text-[18px] mb-3 ">
                             Our stores
                         </li>
-                        <li className="font-light text-[18px] mb-3 ">
+                        <li className=" cursor-pointer hover:text-[--primary] font-light text-[18px] mb-3 ">
                             Contact us
                         </li>
-                        <li className="font-light text-[18px]">
+                        <li className=" cursor-pointer hover:text-[--primary] font-light text-[18px]">
                             Career Specials
                         </li>
                     </ul>
@@ -80,19 +80,19 @@ const Footer = () => {
                     </p>
                     <span className="flex gap-[10px]  mb-[33px] ">
                         <span className="border rounded-md cursor-pointer hover:text-[--second] hover:border-[--second] duration-300 border-[--primary] text-[--primary] p-3 ">
-                            <FaInstagram></FaInstagram>
+                           <a href="https://www.instagram.com/rahimjonabduraximov/"> <FaInstagram></FaInstagram></a>
                         </span>
                         <span className="border rounded-md cursor-pointer hover:text-[--second] hover:border-[--second] duration-300 border-[--primary] text-[--primary] p-3 ">
                             <FaFacebookF></FaFacebookF>
                         </span>
                         <span className="border rounded-md cursor-pointer hover:text-[--second] hover:border-[--second] duration-300 border-[--primary] text-[--primary] p-3 ">
-                            <FaTwitter></FaTwitter>
+                            <a href="https://t.me/rahimjonabduraximov"><FaTwitter></FaTwitter></a>
                         </span>
                         <span className="border rounded-md cursor-pointer hover:text-[--second] hover:border-[--second] duration-300 border-[--primary] text-[--primary] p-3 ">
-                            <FaLinkedinIn></FaLinkedinIn>
+                           <a href="https://www.linkedin.com/in/rakhimjon-abdurakhimov-5ba2b7231/"> <FaLinkedinIn></FaLinkedinIn></a>
                         </span>
                         <span className="border rounded-md cursor-pointer hover:text-[--second] hover:border-[--second] duration-300 border-[--primary] text-[--primary] p-3 ">
-                            <FaYoutube></FaYoutube>
+                            <a href="https://www.youtube.com/channel/UCR3Hd79FFrnJT2moP0eAz_Q"><FaYoutube></FaYoutube></a>
                         </span>
                     </span>
 

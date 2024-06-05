@@ -1,19 +1,29 @@
 import React, { useState } from "react";
 import { FaRegHeart, FaRegUser } from "react-icons/fa6";
-import { FiAlertTriangle, FiDownload, FiLogIn, FiLogOut, FiTrash } from "react-icons/fi";
+import {
+    FiAlertTriangle,
+    FiDownload,
+    FiLogIn,
+    FiLogOut,
+    FiTrash,
+} from "react-icons/fi";
 import { GrLocation } from "react-icons/gr";
 import { LuShoppingCart } from "react-icons/lu";
 import { TbGraph } from "react-icons/tb";
 import OrderForm from "../components/OrderForm";
 import { CiImageOn } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, handleRemove, increment } from "../reducers/cart";
+import empty from "../assets/images/empty.png"
 import Card from "../components/Card";
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
+import {
+    SignedIn,
+    UserButton,
+} from "@clerk/clerk-react";
+import { Link } from "react-router-dom";
 
 const User = ({ formData, handleInputChange, handleSubmit, errors, order }) => {
     const [user, setUser] = useState(0);
-    const { carts, wishlist } = useSelector((state) => state.cart);
+    const { carts, wishlist, totalPrice } = useSelector((state) => state.cart);
     const dispatch = useDispatch();
 
     return (
@@ -108,7 +118,6 @@ const User = ({ formData, handleInputChange, handleSubmit, errors, order }) => {
                             <span>Loguot</span>
                         </span>
                     </SignedIn>
-
                 </div>
             </div>
 
@@ -438,10 +447,136 @@ const User = ({ formData, handleInputChange, handleSubmit, errors, order }) => {
 
             {user == 3 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-full gap-[33px]">
-                    {" "}
                     {wishlist.map((item) => (
                         <Card key={item.id} item={item} />
                     ))}{" "}
+                </div>
+            ) : null}
+
+            {user == 4 ? (
+                <div>
+                    <p className="text-[18px] font-medium mb-[20px]">Reports</p>
+                    <div className="grid gap-[28px]">
+                        <div className="bg-[--bg] p-4 rounded-md">
+                            <p className="text-[16px] font-medium">
+                                Order Summary
+                            </p>
+                            <p className="text-[--text] mt-2">
+                                Total Orders: {carts.length}
+                            </p>
+                            <p className="text-[--text]">
+                                Total Spent: ${totalPrice}.00
+                            </p>
+                        </div>
+                        <div className="bg-[--bg] p-4 rounded-md">
+                            <p className="text-[16px] font-medium">
+                                Wishlist Summary
+                            </p>
+                            <p className="text-[--text] mt-2">
+                                Total Items: {wishlist.length}{" "}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            ) : null}
+
+            {user == 5 ? (
+                carts.length > 0 ? (
+                    <div>
+                        <p className="text-[18px] font-medium mb-[20px]">
+                            Downloads
+                        </p>
+                        <div className="grid gap-[28px]">
+                            <div className="bg-[--bg] p-4 rounded-md">
+                                <p className="text-[16px] font-medium">
+                                    Invoice #12345
+                                </p>
+                                <button className="text-[--primary] mt-2">
+                                    Download PDF
+                                </button>
+                            </div>
+                            <div className="bg-[--bg] p-4 rounded-md">
+                                <p className="text-[16px] font-medium">
+                                    Ebook Title
+                                </p>
+                                <button className="text-[--primary] mt-2">
+                                    Download EPUB
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="flex flex-col items-center justify-center h-full text-center">
+                        <img
+                            src={empty}
+                            alt="No Downloads"
+                            className="w-[150px] h-[150px] mb-[20px]"
+                        />
+                        <p className="text-[18px] font-medium mb-[10px]">
+                            No Downloads Available
+                        </p>
+                        <p className="text-[16px] text-[--text-secondary]">
+                            You haven't made any purchases yet. Browse our store
+                            and make your first purchase to see your downloads
+                            here.
+                        </p>
+                        <Link to={'/'} className="mt-[20px] bg-[--primary] text-white px-[20px] py-[10px] rounded-md">
+                            Start Shopping
+                        </Link>
+                    </div>
+                )
+            ) : null}
+
+            {user == 6 ? (
+                <div>
+                    <p className="text-[18px] font-medium mb-[20px]">Support</p>
+                    <div className="grid gap-[28px]">
+                        <div className="bg-[--bg] p-4 rounded-md">
+                            <p className="text-[16px] font-medium">
+                                Submit a Ticket
+                            </p>
+                            <form className="mt-4">
+                                <div className="flex flex-col mb-[20px]">
+                                    <label
+                                        htmlFor="subject"
+                                        className="text-[16px] mb-[10px]"
+                                    >
+                                        Subject
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="subject"
+                                        className="border px-2 h-[40px] outline-[--primary]"
+                                    />
+                                </div>
+                                <div className="flex flex-col mb-[20px]">
+                                    <label
+                                        htmlFor="message"
+                                        className="text-[16px] mb-[10px]"
+                                    >
+                                        Message
+                                    </label>
+                                    <textarea
+                                        id="message"
+                                        className="border px-2 h-[100px] outline-[--primary]"
+                                    />
+                                </div>
+                                <button className="text-white hover:opacity-70 text-[18px] font-bold bg-[--primary] py-3 px-[22px] rounded-md">
+                                    Submit
+                                </button>
+                            </form>
+                        </div>
+                        <div className="bg-[--bg] p-4 rounded-md">
+                            <p className="text-[16px] font-medium">
+                                Recent Tickets
+                            </p>
+                            <div className="mt-2">
+                                <p className="text-[--text]">
+                                    No recent tickets.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             ) : null}
         </div>
