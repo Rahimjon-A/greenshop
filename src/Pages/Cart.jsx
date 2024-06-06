@@ -33,6 +33,7 @@ const Cart = () => {
     const dispatch = useDispatch();
     const { items } = useSelector((state) => state.cart);
     const [amount, setAmount] = useState(0);
+    const [isZoom, setIsZoom] = useState(false);
     const isLiked = shopping
         ? items.find((i) => i.id === shopping.id)?.isLiked || false
         : false;
@@ -76,21 +77,32 @@ const Cart = () => {
                             />
                         </div>
                         <div className="relative cursor-pointer overflow-hidden">
-                            <TransformWrapper
-                                defaultScale={1}
-                                defaultPositionX={100}
-                                defaultPositionY={200}
+                            {isZoom ? (
+                                <TransformWrapper
+                                    defaultScale={1}
+                                    defaultPositionX={100}
+                                    defaultPositionY={200}
+                                >
+                                    <TransformComponent>
+                                        <img
+                                            src={shopping.image_url}
+                                            className="rounded-md h-[444px] w-[444px]"
+                                            alt="image"
+                                        />
+                                    </TransformComponent>
+                                </TransformWrapper>
+                            ) : (
+                                <img
+                                    src={shopping.image_url}
+                                    className="rounded-md h-[444px] w-[444px]"
+                                    alt="image"
+                                />
+                            )}
+                            <span
+                                onClick={() => setIsZoom((prev) => !prev)}
+                                className={` ${isZoom ? "bg-[--primary] text-white" : "text-[--second]"} p-3 rounded-full bg-[--bg-cart] cursor-pointer absolute top-5 right-5`}
                             >
-                                <TransformComponent>
-                                    <img
-                                        src={shopping.image_url}
-                                        className="rounded-md h-[444px] w-[444px]"
-                                        alt="image"
-                                    />
-                                </TransformComponent>
-                            </TransformWrapper>
-                            <span className="p-3 rounded-full bg-[--bg-cart] cursor-pointer absolute top-5 right-5">
-                                <FaSearch className="text-[--second] text-[28px] hover:text-[--primary] transition-all"></FaSearch>
+                                <FaSearch className={`  text-[28px] transition-all`}></FaSearch>
                             </span>
                         </div>
                     </div>

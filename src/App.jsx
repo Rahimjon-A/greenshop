@@ -11,7 +11,6 @@ import Checkout from "./Pages/Checkout.";
 import User from "./Pages/User";
 import { useDispatch, useSelector } from "react-redux";
 import { clearWarning, handleActive } from "./reducers/cart";
-import UserModal from "./components/UserModal";
 import MobileNavbar from "./components/MobileNavbar";
 import MobileHeader from "./components/MobileHeader";
 import MobileCotegories from "./components/MobileCotegories";
@@ -104,7 +103,6 @@ const App = () => {
             <MobileNavbar setModal={setModal} />
             <MobileCotegories setModal={setModal} modal={modal} />
             <Search />
-            <UserModal />
             <div className="container px-4 mx-auto">
                 <Routes>
                     <Route path="/" element={<Home />} />

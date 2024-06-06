@@ -24,6 +24,7 @@ const Card = ({ item }) => {
         e.stopPropagation();
     };
 
+    
     const isInCart = carts.some((cartItem) => cartItem.id === item.id);
     const isLiked = wishlist.some((cartItem) => cartItem.id === item.id);
 

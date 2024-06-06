@@ -91,6 +91,9 @@ export const cartSlice = createSlice({
                 state.wishlist = [...state.wishlist, item];
             }
         },
+        handleReset : (state) => {
+            state.carts = []
+        }
     },
 });
 
@@ -109,6 +112,7 @@ export const {
     decrement,
     finishAuth,
     startAuth,
+    handleReset,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
