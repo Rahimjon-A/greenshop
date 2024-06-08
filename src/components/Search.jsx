@@ -68,12 +68,12 @@ const Search = () => {
         <div
             className={` ${
                 modal ? "flex" : "hidden"
-            } bg-[#000000b3] fixed z-40 top-0 left-0 w-full h-full duration-300 justify-center items-start`}
+            } bg-[#000000b3] fixed z-50 top-0 left-0 w-full h-full duration-300 justify-center items-start`}
         >
             <div
                 className={`bg-white ${
                     show ? "translate-y-0" : "translate-y-[-100vh] "
-                } transition-all duration-500  w-full lg:w-[900px] mx-4 flex mt-[2%] rounded-md flex-col `}
+                } transition-all duration-500 z-50 w-full lg:w-[900px] mx-4 flex mt-[2%] rounded-md flex-col `}
             >
                 <div className="flex  gap-3  border-b rounded-md overflow-hidden px-4 items-center  ">
                     <label htmlFor="search">

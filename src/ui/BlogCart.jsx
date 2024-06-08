@@ -1,8 +1,12 @@
 import moment from "moment/moment";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { handleActive } from "../reducers/cart";
 
 const BlogCart = ({ image, title, content }) => {
+    const dispatch = useDispatch()
     return (
         <div className="bg-[--bg] rounded-md " >
             <img src={image} alt="" className=" w-full mb-2 " />
@@ -17,10 +21,12 @@ const BlogCart = ({ image, title, content }) => {
                 <p className=" text-[--text] text-[18px] leading-[150%] mb-2 ">
                     {content}
                 </p>
-                <button className="flex items-center gap-2  hover:text-[--primary] font-medium  hover:opacity-70 duration-300 ">
+               <Link to={'/blogs'} onClick={()=> dispatch(handleActive(3))} >
+               <button className="flex items-center gap-2  hover:text-[--primary] font-medium  hover:opacity-70 duration-300 ">
                     <span className="text-[18px]">Find More</span>
                     <FaArrowRight />
                 </button>
+               </Link>
             </div>
         </div>
     );

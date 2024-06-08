@@ -4,7 +4,7 @@ import MainSection from '../components/MainSection'
 
 const Home = () => {
   return (
-    <div>
+    <div className='md:mt-[90px] ' >
       <Slider/>
       <MainSection/>
     </div>

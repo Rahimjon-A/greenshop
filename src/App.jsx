@@ -85,7 +85,7 @@ const App = () => {
     return (
         <div className=" relative">
             {warning && (
-                <div className=" z-10 w-[380px] fixed bg-[--primary] text-center rounded-lg font-semibold p-1 text-[16px] right-1/2 translate-x-1/2 duration-300 top-[5%] text-white transition-all ">
+                <div className=" z-50 w-[380px] fixed bg-[--primary] text-center rounded-lg font-semibold p-1 text-[16px] right-1/2 translate-x-1/2 duration-300 top-[5%] text-white transition-all ">
                     <span className="block">
                         Item has been added to your cart. Want more ?
                     </span>

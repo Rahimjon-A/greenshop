@@ -53,6 +53,14 @@ input[type='radio']:checked:after {
     border: 2px solid white;
 }
 
+.plantcare {
+    background-image: url('./assets/images/plants.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    
+}
+
 
 
 

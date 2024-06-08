@@ -13,12 +13,9 @@ import { TbGraph } from "react-icons/tb";
 import OrderForm from "../components/OrderForm";
 import { CiImageOn } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
-import empty from "../assets/images/empty.png"
+import empty from "../assets/images/empty.png";
 import Card from "../components/Card";
-import {
-    SignedIn,
-    UserButton,
-} from "@clerk/clerk-react";
+import { SignedIn, UserButton } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 
 const User = ({ formData, handleInputChange, handleSubmit, errors, order }) => {
@@ -446,11 +443,26 @@ const User = ({ formData, handleInputChange, handleSubmit, errors, order }) => {
             ) : null}
 
             {user == 3 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-full gap-[33px]">
-                    {wishlist.map((item) => (
-                        <Card key={item.id} item={item} />
-                    ))}{" "}
-                </div>
+                wishlist.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-full gap-[33px]">
+                        {wishlist.map((item) => (
+                            <Card key={item.id} item={item} />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="flex flex-col items-center justify-center h-full text-center">
+                        <div className="bg-yellow-100 text-yellow-700 flex flex-col items-center p-4 rounded-md">
+                            <FiAlertTriangle className="text-[28px] md:text-[48px]  mb-4" />
+                            <p className=" text-[18px] md:text-[24px] font-bold">
+                                Your wishlist is empty!
+                            </p>
+                            <p className=" text-[14px] md:text-[18px] mt-2">
+                                Looks like you haven't added anything to your
+                                wishlist yet.
+                            </p>
+                        </div>
+                    </div>
+                )
             ) : null}
 
             {user == 4 ? (
@@ -520,7 +532,10 @@ const User = ({ formData, handleInputChange, handleSubmit, errors, order }) => {
                             and make your first purchase to see your downloads
                             here.
                         </p>
-                        <Link to={'/'} className="mt-[20px] bg-[--primary] text-white px-[20px] py-[10px] rounded-md">
+                        <Link
+                            to={"/"}
+                            className="mt-[20px] bg-[--primary] text-white px-[20px] py-[10px] rounded-md"
+                        >
                             Start Shopping
                         </Link>
                     </div>
