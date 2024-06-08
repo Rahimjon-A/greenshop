@@ -17,7 +17,7 @@ const Navbar = () => {
     const { active, carts } = useSelector((state) => state.cart);
 
     return (
-        <div className=" hidden fixed z-40 bg-white top-0 container px-4 border-b  mx-auto md:flex justify-between">
+        <div className=" hidden  bg-white container px-4 border-b  mx-auto md:flex justify-between">
             <Link
                 to={"/"}
                 onClick={() => dispatch(handleActive(0))}

@@ -99,7 +99,9 @@ const App = () => {
                 </div>
             )}
             <ScrollTop/>
+            <div className=" fixed w-full z-40 top-0" >
             <Navbar />
+            </div>
             <MobileNavbar setModal={setModal} />
             <MobileCotegories setModal={setModal} modal={modal} />
             <Search />
